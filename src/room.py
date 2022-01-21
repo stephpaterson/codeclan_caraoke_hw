@@ -11,5 +11,8 @@ class Room:
     def add_guest_to_room(self, guest):
         self.guests.append(guest)
 
-    def remove_guest_from_room(self):
+    def remove_all_guests_from_room(self):
         self.guests.clear()
+
+    def remove_guest_by_name(self, guest_name):
+        self.guests.remove(guest_name)
