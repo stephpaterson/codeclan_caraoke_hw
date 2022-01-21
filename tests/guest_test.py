@@ -10,3 +10,7 @@ class TestGuest(unittest.TestCase):
     
     def test_guest_has_name(self):
         self.assertEqual("Kerry", self.guest.name)
+
+    def test_remove_money_from_wallet(self):
+        self.guest.remove_money_from_wallet(10)
+        self.assertEqual(40, self.guest.wallet)
