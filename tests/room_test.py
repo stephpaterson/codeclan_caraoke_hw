@@ -1,4 +1,5 @@
 import unittest
+import pdb
 
 from src.room import Room
 from src.guest import Guest
@@ -8,8 +9,9 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
         self.room = Room("Rock Classics", 6)
-        self.guest = Guest("Kerry", 50)
+        self.guest = Guest("Kerry", 50, "Bohemian Rhapsody", "Queen")
         self.song = Song("Bohemian Rhapsody", "Queen")
+        self.song_1 = Song("Livin' on a prayer", "Bon Jovi")
 
     # Test room has a name
     # Test you can add a song to the list
@@ -25,8 +27,9 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("Rock Classics", self.room.name)
 
     def test_add_song_to_list(self):
-        self.room.add_song_to_room(self.song.name)
-        self.assertEqual("Bohemian Rhapsody", self.room.songs[0])
+        # pdb.set_trace()
+        self.room.add_song_to_room(self.song)
+        self.assertEqual("Bohemian Rhapsody", self.room.songs[0].name)
 
     def test_add_guest_to_room(self):
         self.room.add_individual_guest_to_room(self.guest.name)
@@ -49,6 +52,7 @@ class TestRoom(unittest.TestCase):
         self.room.add_individual_guest_to_room(self.guest.name)
         self.room.add_individual_guest_to_room(self.guest.name)
         self.room.add_individual_guest_to_room(self.guest.name)
+        self.room.add_individual_guest_to_room(self.guest.name)
         self.assertEqual("Sorry, room full", self.room.capacity_check())
 
     def test_add_money_to_till(self):
@@ -60,3 +64,9 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(110, self.room.till)
         self.assertEqual(40, self.guest.wallet)
        
+    def test_full_check_in_guest_sequence(self):
+        self.room.full_check_in_guest_sequence(self.guest)
+        self.room.add_individual_guest_to_room(self.guest.name)
+        self.assertEqual("Kerry", self.room.guests[0])
+        self.assertEqual(110, self.room.till)
+        self.assertEqual(40, self.guest.wallet)
