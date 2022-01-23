@@ -37,7 +37,7 @@ class TestGuest(unittest.TestCase):
         fav_song_playing = self.guest.favourite_artist_playing(self.room.songs)
         self.assertEqual("I love Queen!", fav_song_playing )
 
-    def test_favourite_artist_in_list(self):
+    def test_least_favourite_artist_in_list(self):
         self.room.add_song_to_room(self.song_1)
         fav_song_playing = self.guest.favourite_artist_playing(self.room.songs)
         self.assertEqual("I hate Bon Jovi", fav_song_playing )
